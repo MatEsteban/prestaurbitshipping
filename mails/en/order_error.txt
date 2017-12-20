@@ -1,0 +1,8 @@
+Hello Admin,
+ Attention – An urb-it order has failed and needs to be handled manually. Please contact urb-it if any assistance is required.
+Order Reference ID - {order_ref}
+
+Error_code - {error_code}
+Error - {error_message}
+
+Thanks.

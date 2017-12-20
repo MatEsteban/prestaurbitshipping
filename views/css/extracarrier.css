@@ -1,0 +1,112 @@
+#order .delivery_options_address .delivery_option_logo, #order .delivery_option_carrier .delivery_option_logo, #order-opc .delivery_options_address .delivery_option_logo{
+    width: 150px;
+}
+
+#order .delivery_option label > table.resume td + td, #order-opc .delivery_option label > table.resume td + td{
+    width: 350px;
+}
+#order .delivery_option label > table.resume td + td+td, #order-opc .delivery_option label > table.resume td + td + td {
+    width: 180px;
+}
+ .modal {
+    background-color:#fff;
+    display:none;
+    width:410px;
+    padding:0 15px;
+    text-align:left;
+    border:2px solid #333;
+    z-index: 9999 !important;
+    opacity:1;
+    top: 35% !important;
+    border-radius:6px;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    box-shadow: 0 0 50px #000;
+    -moz-box-shadow: 0 0 50px #000;
+    -webkit-box-shadow: 0 0 50px #000;
+  }
+  #columns
+  {
+      position: static !important;
+  }
+
+  .modal h2 {
+    margin:0px;
+    padding:0px 0 10px 45px;
+    border-bottom:1px solid #333;
+    font-size:20px;
+  }
+  #au_extra
+  {
+      padding-bottom: 10px;
+	  font-size: 14px;
+  }
+  .aus-carrier-shipping label
+  {
+	  width: 100%;
+  }
+  .aus-carrier-shipping h3
+  {
+      margin-top: 10px !important;
+      padding-bottom: 10px !important;
+	  font-size: 20px;
+  }
+  #close_modal_box
+  {
+    background-image: url("../../views/img/close.png");
+    cursor: pointer;
+    height: 32px;
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    width: 32px;
+   }
+   #exposeMask
+   {
+        background-color: black !important;
+        opacity: 0.7 !important;
+        top: 300px;
+   }
+
+   .extra_cover_confirm_msg {
+       padding-top: 5px;
+   }
+
+   ul.extra_cover_msg {
+       list-style-type: none;
+       padding-top: 5px;
+   }
+
+   ul.extra_cover_msg li {
+       font-style: italic;
+	   line-height: 180%;
+   }
+   .extra_cover_hint {
+    background-image: url("../../views/img/info.png");
+    background-position: 0 11px;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    padding-top: 10px;
+   }
+   #aus-carrier-shipping
+   {
+       padding-top: 10px;
+   }
+   .custom-close-overlay
+   {
+	background: none repeat scroll 0 0 #d50000;
+    border: medium none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 5px 0;
+    text-align: center;
+    text-decoration: none;
+    width: 15%;
+   }
+   #order .delivery_option > div > table.resume td.delivery_option_price, #order-opc .delivery_option > div > table.resume td.delivery_option_price
+   {
+	   width: 215px;
+   }
