@@ -1,0 +1,396 @@
+/* General styles */
+.bold { font-weight: bold; }
+.tooltip {
+	cursor: pointer;
+}
+.table { border-collapse: collapse; }
+/* Configuration status block */
+#main .conf_sts_list li {
+	padding: 1em 3.5em 0.5em;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+#urbit_admin ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#urbit_admin .error {
+    border: 1px solid #CC0000;
+    color: #D8000C;
+    font-weight: normal;
+}
+label:after {
+    clear: both;
+}
+
+/* Tabs nav */
+.ui-tabs {
+	/*background: #F2F4FA;*/
+	border: none;
+	padding: .5em 0.2em 0.2em;
+}
+.ui-tabs .ui-tabs-nav {
+	background: none;
+	padding: .2em 1.2em 0;
+	border: none;
+    width: 99%;
+}
+.ui-tabs .ui-tabs-nav li {
+    margin: 1px 0.2em 0 0 !important;
+    border-color: #C90B0B !important;
+    top: 1px !important;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { background: #FDC400; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover { background: #FA1B1B !important}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { background: #fff; }
+.ui-tabs .ui-tabs-nav li a { font-weight: bold; }
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #fff;}
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #C90B0B; background: none; }   
+.ui-tabs .ui-tabs-panel {
+	border: 1px solid #C90B0B !important;
+	background: #FFFFFD;
+	padding: 1em 1.4em;
+        
+}
+/* form */
+.tabs .margin-form {
+	padding: 4px 0 1em 32%;
+}
+.urbit_column1 .margin-form
+{
+    padding-left: 62%;
+}
+.urbit_column1 .margin-form input
+{
+    word-break: break-all; 
+}
+.urbit_column1 .clearfix
+{
+    width: 93%;
+    
+}
+.tabs .margin-form h4 
+{
+    color: #000;
+    font-size: 1.2em; 
+}
+#urbit_save_products_form .margin-form, #category_form .margin-form
+{
+    width: 69% !important;
+}
+.tabs form label {
+	float: left;
+	width: 29%;
+}
+.au_package_margin a
+{
+    float: left;
+}
+.tabs form input[type=text], 
+.tabs form textarea, 
+.tabs form select {
+	float: left;
+}
+form p.intro-txt {
+	font-style: italic;
+	line-height: 1.5em;
+	margin-bottom: 1em;
+}
+
+#urbit_admin form input.button {
+	padding: 0.5em 1.5em;
+	font-size: 1.1em;
+	margin-top: 1em;
+	background: #D50000;
+	color: #fff;
+	text-shadow: none;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+/* Form Error style */
+#content .error {
+	background: none;
+	min-height: 18px;;
+	padding: 2px 4px;
+	margin: 0;
+	border-radius: 0;
+}
+#content .form label.error {
+	width: auto;
+	border: none;
+}
+
+a.tt-icon {
+	display: inline-block;
+	height: 16px;
+	width: 16px;
+	vertical-align: middle;
+	background: url(../img/help.png) no-repeat;
+}
+
+#add-category .warn ul {
+	list-style-type: disc;
+	margin-left: 2.5em
+}
+.error2{
+    border: solid 1px yellow !important;
+}
+.error4{
+    border: solid 1px orange !important;
+}
+
+
+/* General */
+#urbit_admin #configForm .service_list .margin-form {
+	font-size: 0.75em;
+}
+
+
+/* Search product */
+input#product_search {
+	width: 50%;
+	font-style: italic;
+}
+.ui-menu .ui-menu-item a { text-align: left;}
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active {
+	background: #EAF8F8;/*#D50000;*/
+	/*color: #fff; */
+	border-width: 0;
+	margin: 0;
+	border-radius: 0;
+}
+
+/* Help tab */
+.tabs .question-list ul {
+	float: left;
+	list-style: disc;
+	margin-left: 5%;
+	width: 30%;
+}
+.tabs .question-list li {
+	padding: 0.5em 0;
+}
+.tabs .question-list li a {
+	font-weight: bold;
+}
+/* Css 2.7*/
+#configForm label 
+{
+    float: left;
+    width: 60%;
+	font-size: 0.85em;
+}
+.ie8 .urbit_column1 .margin-form
+{
+    width:39% !important;
+    float: right;
+    margin-top: -20px;
+}
+.urbit_genaral
+{
+    float: left;
+    width: 32%;
+}
+.urbit_genaral fieldset
+{
+    height: auto;
+}
+.urbit_package_new
+{
+    width: 38.2% !important;
+}
+.urbit_package
+{
+    width: 34%;
+    margin: 0 1%;
+}
+.urbit_icon_top
+{
+    width: 24px;
+    height: 24px;
+}
+.urbit_icon_services
+{
+    width: 16px;
+    height: 16px;
+    margin: 2px;
+}
+.urbit_lable_services
+{
+    width: 100% !important;
+    clear: both;
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom:5px;
+}
+.urbit_table tr
+{
+    height:32px;
+}
+.urbit_table tr td a
+{
+    float: left;
+    padding-right: 5px;
+}
+.urbit_table .urbit_flexible
+{
+    color: #7F7F7F;
+    font-size: 0.85em;
+}
+.urbit_extra_cover
+{
+    line-height: 180%; 
+    padding-top: 0px !important;
+}
+.urbit_services
+{
+    padding-left: 0px !important;
+}
+.ui-state-default
+{
+    border: 1px solid #CCCCCC !important;
+    background: #FDC400 !important;
+    
+}
+.ui-state-default a
+{
+    color: white !important;
+}
+.ui-state-active
+{
+    background: white !important;
+    border: 1px solid #D50000 !important;
+    border-bottom: none !important;
+}
+.ui-state-active a
+{
+    color: #C90B0B !important;
+}
+.ui-state-hover a
+{
+    color: white !important;
+}
+fieldset
+{
+    font-size: 1em !important;
+}
+.urbit_table
+{
+    width: 100%;
+    border: none;
+}
+.urbit_theader
+{
+    font-weight: bold;
+    text-align: left;
+}
+.urbit_title
+{
+	font-size: 0.85em;
+    font-weight: bold;
+    text-align: right;
+}
+.urbit_submit
+{
+    clear: both;
+    width: 100%;
+    text-align: center;
+}
+.urbit_fieldset .urbit_fieldset div .margin-form
+{
+    float: left;
+}
+.clearfix
+{
+    width: 100%;
+}
+.ui-widget-content
+{
+    padding: 5px;
+	list-style: none;
+}
+.ui-menu .ui-menu-item a{
+    border: none;   
+    padding: 1px 5px !important;
+}
+#product_name
+{
+    text-align: left;
+}
+.module_status fieldset
+{
+    border-bottom: none;
+}
+.module_info fieldset
+{
+    border-top: none;
+}
+.nobootstrap
+{
+    min-width: 0;
+    padding: 100px 20px;
+}
+@media only screen and (min-width: 680px) and (max-width: 990px)
+{
+    .urbit_genaral
+    {
+        float: left;
+        width: 49%;
+        padding-bottom: 10px;
+        
+    }
+    .urbit_package
+    {
+        margin-left: 2%;
+        margin-right: 0px;
+    }
+    .urbit_fieldset3
+    {
+        height: auto !important;
+    }
+    
+}
+@media only screen and (max-width: 679px) 
+{
+    .urbit_genaral
+    {
+        float: left;
+        width: 100%;
+        margin-top: 10px;
+    }
+    .urbit_package
+    {
+        margin: 10px 0 0 0;
+    }
+    #ui-tabs-1
+    {
+        padding:0
+    }
+    .urbit_submit
+    {
+        margin-bottom: 10px;
+    }
+    .urbit_genaral fieldset
+    {
+        height: auto;
+    }
+    .ui-autocomplete
+    {
+	margin: 0 auto;
+	right: 10%;
+	left: auto !important;
+    }
+}

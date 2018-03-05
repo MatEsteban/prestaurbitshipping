@@ -1,0 +1,165 @@
+/* jquery ul style overide*/
+.ui-widget-header {
+    background: transparent !important;
+    border:none !important;
+}
+
+#tab-1 {
+    float: left;
+}
+#tabs-1 legend{
+    padding: 15px;
+    border-radius: 5px;
+    margin-left: 25px;
+}
+
+#tabs-1 fieldset{
+    border-radius: 5px;  
+    width: 100%;
+    min-height: 400px;
+    padding: 10px 0px 0px 0px;
+}
+
+#tabs-1-inner{
+    padding: 20px 0px 50px 0px;
+    width: 50%;
+}
+
+#tabs-1 input[name="save_general_data"]{
+    float: right;
+    height: 40px;
+    width: 100px;
+    background-color:#FDC400;
+    border:none;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+.hp_urbit_module select, .hp_urbit_offer_sp_time select{
+    margin-left: 20px;
+    padding:5px 20px;
+}
+
+.hp_urbit_module, .hp_urbit_offer_sp_time{
+    width: 60%;
+    margin: 10px 0px 10px 25px;
+}
+
+.hp_urbit_module span, .hp_urbit_offer_sp_time span{
+    width: 50%;
+    float: left !important;
+}
+
+/* second tab starting */
+#tabs-2 fieldset{
+    border-radius: 5px;
+    min-height: 500px;
+    padding: 10px 0px 0px 10px;
+}
+
+#tabs-2 legend{
+    padding: 15px;
+    border-radius: 5px;
+    margin-left: 25px;
+}
+
+#tabs-2-inner{
+    width: 100%;
+    
+}
+
+#tabs-2-inner:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#tab-2-feild-1, #tab-2-feild-2{
+    float: left;
+    margin: 10px;
+}
+
+#tab-2-feild-1{
+    width: 40%;
+}
+.tab-2-input-area{
+    margin: 10px 0px;
+}
+.tab-2-input-area span{
+    width: 30%;
+    float: left !important;
+}
+
+.tab-2-input-area input[type="text"]{
+    margin-left: 10px;
+    padding:5px 20px;
+}
+
+#tabs-2 input[name="save_credentials_data"]{
+    float: right;
+    height: 40px;
+    width: 100px;
+    background-color:#FDC400;
+    border:none;
+    color: #ffffff;
+    border-radius: 5px;
+    position: relative;
+    top: 500px;
+}
+
+/* third tab starting */
+#tabs-3 fieldset{
+    border-radius: 5px;  
+    min-height: 500px;
+}
+
+#tabs-3 legend{
+    padding: 15px;
+    border-radius: 5px;
+    margin-left: 25px;
+}
+
+#tabs-3-inner{
+    width: 100%;
+}
+
+#tabs-3-inner:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#tab-3-feild-1, #tab-3-feild-2{
+    float: left;
+    margin: 10px;
+}
+
+
+.tab-3-link-area ul{
+    padding-left: 20px;
+}
+
+.tab-3-link-area ul li{
+    list-style: none;
+    padding:5px;
+}
+
+.tab-3-input-area input[type="text"]{
+    height: 50px;
+    width: 300px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#tabs-3 input[name="save_copy_data"]{
+    float: right;
+    height: 40px;
+    width: 100px;
+    background-color:#FDC400;
+    border:none;
+    color: #ffffff;
+    border-radius: 5px;
+    position: relative;
+    top:520px;
+}
+

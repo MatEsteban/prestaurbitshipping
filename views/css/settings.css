@@ -1,0 +1,253 @@
+/* jquery ul style overide*/
+.ui-widget-header {
+    background: transparent !important;
+    border:none !important;
+}
+
+#tab-1 {
+    float: left;
+}
+#tabs-1 legend{
+    padding: 15px;
+    border-radius: 5px;
+    margin-left: 25px;
+}
+
+#tabs-1 fieldset{
+    border-radius: 5px;  
+    width: 100%;
+    min-height: 400px;
+    padding: 10px 0px 0px 0px;
+}
+
+#tabs-1 fieldset .admin_fees_block, .admin_order_preparation_block{
+    margin-top: 45px;
+}
+
+#tabs-1-inner, #tabs-2-inner{
+    padding: 20px 0px 50px 0px;
+    width: 650px;
+}
+
+#tabs-1 input[name="save_general_data"]{
+    float: right;
+    height: 40px;
+    width: 100px;
+    background-color: rgb(132,132,132);
+    border:none;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+.hp_urbit_module select, .hp_urbit_offer_sp_time select {
+    margin-left: 20px;
+    padding:5px 20px;
+}
+
+.admin_order_preparation select {
+    padding:5px 20px;
+}
+
+.hp_urbit_module, .hp_urbit_offer_sp_time{
+    width: 60%;
+    margin: 10px 0px 45px 25px;
+}
+
+.tab-2-input-area.admin_mail, .tab-2-input-area.admin_flat_fee, .tab-2-input-area.admin_order_preparation  { margin-left: 25px; }
+
+.hp_urbit_module span, .hp_urbit_offer_sp_time span{
+    width: 50%;
+    float: left !important;
+}
+
+/* second tab starting */
+#tabs-2 fieldset{
+    border-radius: 5px;
+    min-height: 500px;
+    padding: 10px 0px 0px 10px;
+}
+
+#tabs-2 legend{
+    padding: 15px;
+    border-radius: 5px;
+    margin-left: 25px;
+}
+
+/*
+#tabs-2-inner{
+    !*width:422px;*!
+    padding: 20px 0px 50px 0px;
+    width: 650px;
+}
+*/
+
+#admin_email {
+    border: 1px solid #ccc;
+    padding: 5px 20px;
+}
+
+#tabs-2-inner:after{
+    content: "";
+    display: block;
+    clear: both; padding-bottom: 10px;
+}
+
+#tab-2-feild-1, #tab-2-feild-2{
+    float: left;
+   
+}
+#tabs {
+    width: 85%; padding: 15px;
+}
+#tab1_frm #tabs-1, #tabs-2, #tabs-3 { border: 1px solid #ccc; }
+#tabs .tab_headings {
+    padding:0;}
+.tab_headings .ui-tabs-active { border-bottom: 1px solid #fff; }
+#tabs .tab_headings li a { padding-top: 10px !important;  height: 30px; }
+#tabs .tab_headings li { }
+
+#tab-2-feild-2{
+     margin-left: 10px;
+     width: 356px;
+}
+
+#tab-2-feild-1{
+    width: 640px;
+}
+.tab-2-input-area{
+    margin: 10px 0px;
+}
+.tab-2-input-area span{
+    width: 40%;
+    float: left !important;
+}
+
+.tab-2-input-area input[type="text"]{
+    margin-left: 10px;
+    padding:5px 20px;
+}
+
+.tab-2-input-area.admin_flat_fee input[type="text"]{
+    margin-left: 0;
+}
+
+.tab-2-input-area.admin_order_preparation input[type="text"]{
+    margin-left: 0;
+}
+
+#tabs-2 input[name="save_credentials_data"]{
+    float: right;
+    height: 40px;
+    width: 100px;
+    background-color:rgb(132,132,132);
+    border:none;
+    color: #ffffff;
+    border-radius: 5px;
+    /*margin-right: 10px;*/
+}
+
+
+/* third tab starting */
+#tabs-3 fieldset{
+    border-radius: 5px;  
+    min-height: 500px;
+}
+
+#tabs-3 legend{
+    padding: 15px;
+    border-radius: 5px;
+    margin-left: 25px;
+}
+
+#tabs-3-inner{
+    width: 800px;
+}
+
+#tabs-3-inner:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#tab-3-feild-1, #tab-3-feild-2{
+    float: left;
+    margin: 10px;
+}
+
+#tab-3-feild-1{
+	width: 385px;
+}
+
+#tab-3-feild-2{
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+    width: 320px;
+}
+
+.tab-3-link-area ul{
+    padding-left: 20px;
+}
+
+.tab-3-link-area ul li{
+    list-style: none;
+    padding:5px;
+}
+
+.tab-3-input-area input[type="text"]{
+    height: 50px;
+    width: 300px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#tabs-3 input[name="save_copy_data"]{
+    float: right;
+    height: 40px;
+    width: 100px;
+    background-color:rgb(132,132,132);
+    border:none;
+    color: #ffffff;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+/* new css */
+.ui-state-default.ui-tabs-active a{
+    background-color: rgb(132,132,132);
+    color: #FFFFFF !important;
+    height: 40px;
+     width: 150px;
+}
+#tab1_frm fieldset, #tabs-1 legend, #tab-2-feild-1, #tab-3-feild-1, #tab-3-feild-2, #tab-2-feild-1 legend, #tab-3-feild-1 legend, #tab-3-feild-2 legend { background-color: rgb(247,247,249); border: 1px solid rgb(193,193,194)}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background: #FFFFFF !important;
+    color: #FDC400 !important;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default a{
+    height: 40px;
+     width: 150px;
+    color: rgb(132,132,132);
+    padding: 0px !important;
+    text-align: center;
+}
+
+#tabs ul#tabs-menu li{
+    height: 40px;
+    width: 150px;
+    border: 1px solid #FDC400;
+}
+
+#tabs ul#tabs-menu li a{
+    padding-top: 10px !important;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+*:focus {
+    outline: none;
+}
+.icon-gift { padding-right: 10px; }
+
+/* end new css */
