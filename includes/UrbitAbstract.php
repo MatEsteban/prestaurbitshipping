@@ -292,7 +292,8 @@ abstract class UrbitAbstract extends CarrierModule
 
     /**
      * Front Methods
-     * If you set need_range at true when you created your carrier (in install method), the method called by the cart will be getOrderShippingCost
+     * If you set need_range at true when you created your carrier (in install method)
+     * The method called by the cart will be getOrderShippingCost
      * If not, the method called will be getOrderShippingCostExternal
      * $cart var contains the cart, the customer, the address
      */
@@ -304,7 +305,8 @@ abstract class UrbitAbstract extends CarrierModule
     /**
      * Front Methods
      *
-     * If you set need_range at true when you created your carrier (in install method), the method called by the cart will be getOrderShippingCost
+     * If you set need_range at true when you created your carrier (in install method)
+     * The method called by the cart will be getOrderShippingCost
      * If not, the method called will be getOrderShippingCostExternal
      * @param Cart $cart
      * @param float $shipping_cost
@@ -319,7 +321,8 @@ abstract class UrbitAbstract extends CarrierModule
             return false;
         }
 
-        // initial cost (calculated by Prestashop, in according to handling fee, additional shipping fee, weight range/price range fee, etc
+        // initial cost (calculated by Prestashop, in according to handling fee,
+        // additional shipping fee, weight range/price range fee, etc
         $initial_shipping_cost = $shipping_cost;
         $this->_country_code = $this->getCountryCode($cart);
         $this->_service_area = $this->getServiceArea($this->_country_code);
@@ -410,18 +413,24 @@ abstract class UrbitAbstract extends CarrierModule
         if (!Validate::isInt(Configuration::get('URBIT_FLENGTH')) || !Configuration::get('URBIT_FLENGTH')) {
             $check_configuration['generalSettings'] = 1;
         }
-        if (!Validate::isInt(Configuration::get('URBIT_FHEIGHT')) || !Configuration::get('URBIT_FHEIGHT')) {
+        if (!Validate::isInt(Configuration::get('URBIT_FHEIGHT')) ||
+            !Configuration::get('URBIT_FHEIGHT')) {
             $check_configuration['generalSettings'] = 1;
         }
         if (!Validate::isInt(Configuration::get('URBIT_FWIDTH')) || !Configuration::get('URBIT_FWIDTH')) {
             $check_configuration['generalSettings'] = 1;
         }
-        if (!UrbitValidate::validateZipCode(Configuration::get('URBIT_CARRIER_POSTAL_CODE'), $this->country_iso) || !Configuration::get('URBIT_CARRIER_POSTAL_CODE')) {
+        if (!UrbitValidate::validateZipCode(Configuration::get('URBIT_CARRIER_POSTAL_CODE'), $this->country_iso)
+          || !Configuration::get('URBIT_CARRIER_POSTAL_CODE')) {
             $check_configuration['generalSettings'] = 1;
         }
         // Validate service rate
         if (Db::getInstance()
-                ->getValue('SELECT count(id_urbit_rate_service_code) FROM `' . _DB_PREFIX_ . 'urbit_rate_service_code` WHERE `active` = 1') < 1) {
+                ->getValue(
+                    'SELECT count(id_urbit_rate_service_code) FROM `' .
+                     _DB_PREFIX_ .
+                      'urbit_rate_service_code` WHERE `active` = 1'
+                ) < 1) {
             $check_configuration['deliveryServices'] = 1;
         }
 
@@ -432,9 +441,7 @@ abstract class UrbitAbstract extends CarrierModule
 
         $configuration_status = array('success' => array(), 'fail' => array());
         if (!count($check_configuration)) {
-        }
-        
-        else {
+        } else {
         }
 
         return $configuration_status;
@@ -674,7 +681,8 @@ abstract class UrbitAbstract extends CarrierModule
 
                 // Fix: additional_charges is not applied.
                 // From the API:
-                // [additional_charges]: Optional. The monetary value of the extra cover, represented in dollar value only.
+                // [additional_charges]: Optional. The monetary value of the extra cover,
+                //represented in dollar value only.
                 // Integer only, no dollar sign, decimal or comma accepted.
                 // This parameter is only applicable when the suboption_code is AUS_SERVICE_OPTION_EXTRA_COVER
                 // But service code of the carrier Registered Post with Delivery Confirmation is defined as"
@@ -741,7 +749,8 @@ abstract class UrbitAbstract extends CarrierModule
         }
 
         $service_area = $this->getServiceArea($country_code);
-        $service_codes = $this->_service_code; // by defaut, service_code/ service_option/ service_sub_option are separated by '+'
+        $service_codes = $this->_service_code;
+        // by defaut, service_code/ service_option/ service_sub_option are separated by '+'
         $request_data = array();
         $request_data['service_area'] = $service_area; // for internal only
         $request_data['from_postcode'] = Configuration::get('URBIT_CARRIER_POSTAL_CODE');
@@ -956,7 +965,9 @@ abstract class UrbitAbstract extends CarrierModule
                 $object_service_code = new UrbitRateServiceCode($selected_service['id_urbit_rate_service_code']);
                 if (Validate::isLoadedObject($object_service_code)) {
                     $object_service_code->id_carrier = (int)($params['carrier']->id);
-                    $object_service_code->id_carrier_history = pSQL($selected_service['id_carrier_history'] . '|' . (int)($params['carrier']->id));
+                    $object_service_code->id_carrier_history = pSQL(
+                        $selected_service['id_carrier_history'] . '|' . (int)($params['carrier']->id)
+                    );
                     $object_service_code->active = (int)$params['carrier']->active;
                     if ($object_service_code->save()) {
                         return true;
@@ -1051,7 +1062,8 @@ abstract class UrbitAbstract extends CarrierModule
             'carrier_id'               => $carrier_id . ',',
             'carrier_img_id'           => $base . 'img/s/' . $carrier_id . '.jpg',
             'base_url'                 => $base,
-            'ajax_url'                 => $url,
+            'ajax_url'                 => $url
+
         ));
 
         return $this->display($this->name . '.php', 'shipping_sp_time.tpl');
@@ -1124,11 +1136,22 @@ abstract class UrbitAbstract extends CarrierModule
         $objOrder = $params['objOrder']; // get order object from the orderconfirm hook
 
         $order_cart_carrier = Db::getInstance()
-            ->executeS('SELECT  id_carrier FROM ' . _DB_PREFIX_ . 'carrier WHERE external_module_name = "urbit" ORDER BY id_carrier DESC LIMIT 1');
+            ->executeS(
+                'SELECT  id_carrier FROM ' .
+                _DB_PREFIX_ .
+                'carrier WHERE external_module_name = "urbit" ORDER BY id_carrier DESC LIMIT 1'
+            );
 
         if ($order_cart_carrier[0]["id_carrier"] == $objOrder->id_carrier) {
             $upservice = Db::getInstance()
-                ->execute('UPDATE ' . _DB_PREFIX_ . 'urbit_order_cart SET `id_carrier` = ' . $objOrder->id_carrier . ' WHERE id_cart = ' . $objOrder->id_cart);
+                ->execute(
+                    'UPDATE ' .
+                    _DB_PREFIX_ .
+                    'urbit_order_cart SET `id_carrier` = ' .
+                    $objOrder->id_carrier .
+                    ' WHERE id_cart = ' .
+                    $objOrder->id_cart
+                );
         }
 
         // get order information saved in urbit_order_cart if the customer select urbit as a shipping option
@@ -1290,9 +1313,15 @@ abstract class UrbitAbstract extends CarrierModule
             $id_country = (int)$this->context->cookie->id_country;
         }
         if (!isset($id_country)) {
-            $id_country = (isset($this->context->customer->geoloc_id_country) ? (int)$this->context->customer->geoloc_id_country : (int)Configuration::get('PS_COUNTRY_DEFAULT'));
+            $id_country = (isset($this->context->customer->geoloc_id_country) ?
+              (int)$this->context->customer->geoloc_id_country :
+                (int)Configuration::get('PS_COUNTRY_DEFAULT')
+              );
         }
-        if (isset($this->context->customer->id) && $this->context->customer->id && isset($this->context->cart->id_address_delivery) && $this->context->cart->id_address_delivery) {
+        if (isset($this->context->customer->id)
+            && $this->context->customer->id
+            && isset($this->context->cart->id_address_delivery) &&
+            $this->context->cart->id_address_delivery) {
             $address = new Address((int)($this->context->cart->id_address_delivery));
             $id_country = (int)$address->id_country;
         }
@@ -1301,7 +1330,9 @@ abstract class UrbitAbstract extends CarrierModule
             $id_state = (int)$this->context->cookie->id_state;
         }
         if (!isset($id_state)) {
-            $id_state = (isset($this->context->customer->geoloc_id_state) ? (int)$this->context->customer->geoloc_id_state : 0);
+            $id_state = (isset($this->context->customer->geoloc_id_state) ?
+              (int)$this->context->customer->geoloc_id_state : 0
+            );
         }
     }
 
@@ -1346,7 +1377,10 @@ abstract class UrbitAbstract extends CarrierModule
     {
         $product = $this->getProduct();
 
-        return !empty($product) && ($product->quantity > 0 || $product->isAvailableWhenOutOfStock((int)$product->out_of_stock));
+        return !empty($product) &&
+          ($product->quantity > 0
+            || $product->isAvailableWhenOutOfStock((int)$product->out_of_stock)
+        );
     }
 
     /*
@@ -1388,13 +1422,20 @@ abstract class UrbitAbstract extends CarrierModule
             case '2.7':
                 if ($this->name !== 'urbitbasic') {
                     // Feature: show party costs
-                    $sql = 'ALTER TABLE `' . _DB_PREFIX_ . 'urbit_cache` ADD COLUMN `partly_cost` TEXT AFTER `date_upd`';
-                    $flag = (Configuration::deleteByName('URBIT_AFTER_DELAY') && Configuration::deleteByName('URBIT_BEFORE_DELAY') && Configuration::deleteByName('URBIT_EXTRA_DELAY') && Configuration::updateValue(
-                            'URBIT_SHOW_DELAY',
-                            1
-                        ) && Configuration::updateValue('URBIT_SHOW_PARTLY_COST',
-                            1
-                        ) && Db::getInstance()->query($sql)
+                    $sql = 'ALTER TABLE `' .
+                      _DB_PREFIX_ .
+                      'urbit_cache` ADD COLUMN `partly_cost` TEXT AFTER `date_upd`';
+                    $flag = (
+                      Configuration::deleteByName('URBIT_AFTER_DELAY')
+                      && Configuration::deleteByName('URBIT_BEFORE_DELAY')
+                      && Configuration::deleteByName('URBIT_EXTRA_DELAY') && Configuration::updateValue(
+                          'URBIT_SHOW_DELAY',
+                          1
+                      )
+                           && Configuration::updateValue(
+                               'URBIT_SHOW_PARTLY_COST',
+                               1
+                           ) && Db::getInstance()->query($sql)
                     );
                 }
                 break;
@@ -1416,13 +1457,24 @@ abstract class UrbitAbstract extends CarrierModule
                 break;
             case '2.8':
                 if ($this->name !== 'urbitbasic') {
-                    $sql_alter = 'ALTER TABLE `' . _DB_PREFIX_ . 'urbit_rate_service_code` ADD COLUMN `delay` VARCHAR(128) AFTER `service`';
-                    $sql_update = 'UPDATE `' . _DB_PREFIX_ . 'carrier_lang` AS `cl`
-        JOIN `' . _DB_PREFIX_ . 'urbit_rate_service_code` AS `arsc`
-        ON (`cl`.`id_carrier` = `arsc`.`id_carrier`)
-        SET `cl`.`delay` = `arsc`.`delay`';
+                    $sql_alter = 'ALTER TABLE `' .
+                      _DB_PREFIX_ .
+                      'urbit_rate_service_code` ADD COLUMN `delay` VARCHAR(128) AFTER `service`';
+                    $sql_update = 'UPDATE `' .
+                       _DB_PREFIX_ .
+                       'carrier_lang` AS `cl`
+                       JOIN `' .
+                        _DB_PREFIX_ .
+                        'urbit_rate_service_code` AS `arsc`
+                        ON (`cl`.`id_carrier` = `arsc`.`id_carrier`)
+                        SET `cl`.`delay` = `arsc`.`delay`';
                     $flag = (Db::getInstance()->query($sql_alter) && Db::getInstance()
-                            ->query($sql_update) && $this->registerHook('displayRightColumnProduct') && $this->registerHook('actionObjectCarrierUpdateAfter'));
+                            ->query(
+                                $sql_update
+                            )
+                                && $this->registerHook('displayRightColumnProduct')
+                                && $this->registerHook('actionObjectCarrierUpdateAfter')
+                    );
                 }
                 break;
             case '2.9':
@@ -1702,13 +1754,22 @@ abstract class UrbitAbstract extends CarrierModule
         $news = $licence_api->getNews($paramater);
 
         $result = '';
-        if (!empty($validate_licence['success']) && $validate_licence['success'] && !empty($new_versions['success']) && $new_versions['success'] && !empty($news['success']) && $news['success']) {
+        if (!empty($validate_licence['success']) &&
+          $validate_licence['success'] &&
+          !empty($new_versions['success'])
+          && $new_versions['success'] &&
+          !empty($news['success']) && $news['success']
+        ) {
             $this->context->smarty->assign(array(
                 'new_versions'     => $new_versions,
                 'validate_licence' => $validate_licence,
                 'news'             => $news,
             ));
-            $result = $this->context->smarty->fetch(_PS_MODULE_DIR_ . $this->name . '/views/templates/admin/urbit/admin_module.tpl');
+            $result = $this->context->smarty->fetch(
+                _PS_MODULE_DIR_ .
+                 $this->name .
+                 '/views/templates/admin/urbit/admin_module.tpl'
+            );
         }
 
         return $result;

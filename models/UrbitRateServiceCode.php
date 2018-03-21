@@ -95,10 +95,14 @@ class UrbitRateServiceCode extends ObjectModel
             }
             // process save service
             $services_id = implode(',', $services);
-            $sql_serice = 'UPDATE `' . _DB_PREFIX_ . 'urbit_rate_service_code` SET active=' . (($active) ? '1' : '0') . ' WHERE id_urbit_rate_service_code IN (' . $services_id . ')';
+            $sql_serice = 'UPDATE `' . _DB_PREFIX_ .
+              'urbit_rate_service_code` SET active=' . (($active) ? '1' : '0') .
+              ' WHERE id_urbit_rate_service_code IN (' . $services_id . ')';
             // process save carrie
             $carrier_id = implode(',', $carries);
-            $sql_carrier = 'UPDATE `' . _DB_PREFIX_ . 'carrier` SET active=' . (($active) ? '1' : '0') . ' WHERE id_carrier IN (' . $carrier_id . ')';
+            $sql_carrier = 'UPDATE `' . _DB_PREFIX_ .
+              'carrier` SET active=' . (($active) ? '1' : '0') .
+              ' WHERE id_carrier IN (' . $carrier_id . ')';
             if (!Db::getInstance()->query($sql_serice) || !Db::getInstance()->query($sql_carrier)) {
                 return false;
             }

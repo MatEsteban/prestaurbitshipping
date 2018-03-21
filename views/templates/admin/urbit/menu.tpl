@@ -328,7 +328,9 @@
 p.num{
   text-align: center;
 }
-
+#tabs-0{
+  border: 1px solid #ccc;
+}
 </style>
 
 <div id="tabs">

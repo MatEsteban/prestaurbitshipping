@@ -16,7 +16,8 @@ require_once(dirname(__FILE__).'../../../init.php');
 
 $db = Db::getInstance();
 // ps_urbit_rate_service_code
-$data = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS("SELECT * FROM " . _DB_PREFIX_ . "urbit_rate_service_code WHERE  code='URB_REGULAR'");
+$data = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS("SELECT * FROM " . _DB_PREFIX_ .
+  "urbit_rate_service_code WHERE  code='URB_REGULAR'");
 
 $form_data = array();
 $mod = Tools::getValue('mod');
@@ -100,7 +101,7 @@ if ($test_api_call) {
         echo Tools::jsonEncode("success");
         die;
     }
-} else if ($module_status) {
+} elseif ($module_status) {
 //http://stackoverflow.com/questions/16606300/prestashop-inserting-values-to-the-database-showing-unexpected-t-string
     /*    $insertData = array(
 
@@ -145,17 +146,24 @@ if ($test_api_call) {
     } elseif ($module_status == "disabled") {
         $status = 0;
     }
-    DB::getInstance()->Execute("UPDATE `" . _DB_PREFIX_ . "carrier` SET `active`='" . $status . "' WHERE `id_carrier`='" . $data[0]['id_carrier'] . "'");
+    DB::getInstance()->Execute("UPDATE `" . _DB_PREFIX_ .
+      "carrier` SET `active`='" . $status . "' WHERE `id_carrier`='" . $data[0]['id_carrier'] . "'");
 
-    $data_array = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS("SELECT * FROM `" . _DB_PREFIX_ . "urbit_configuration_data`  WHERE `urb_carrier_id`='" . $data[0]['id_carrier'] . "'");
+    $data_array = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS("SELECT * FROM `" . _DB_PREFIX_ .
+      "urbit_configuration_data`  WHERE `urb_carrier_id`='" .
+      $data[0]['id_carrier'] . "'");
     if (sizeof($data_array) > 0) {
-        DB::getInstance()->Execute("UPDATE `" . _DB_PREFIX_ . "urbit_configuration_data` SET `urb_it_status`='" . $module_status . "', `times_lap`='" . $module_period . "'  WHERE `urb_carrier_id`='" . $data[0]['id_carrier'] . "'");
+        DB::getInstance()->Execute("UPDATE `" . _DB_PREFIX_ .
+          "urbit_configuration_data` SET `urb_it_status`='" . $module_status . "', `times_lap`='" . $module_period .
+          "'  WHERE `urb_carrier_id`='" . $data[0]['id_carrier'] . "'");
     } else {
-        DB::getInstance()->Execute("INSERT INTO `" . _DB_PREFIX_ . "urbit_configuration_data` (`urb_it_status`, `times_lap`, `urb_carrier_id`) VALUES ('" . $module_status . "','" . $module_period . "','" . $data[0]['id_carrier'] . "')");
+        DB::getInstance()->Execute("INSERT INTO `" . _DB_PREFIX_ .
+          "urbit_configuration_data` (`urb_it_status`, `times_lap`, `urb_carrier_id`) VALUES ('" .
+          $module_status . "','" . $module_period . "','" . $data[0]['id_carrier'] . "')");
     }
 
     echo Tools::jsonEncode("success");
-} else if ($validate) {
+} elseif ($validate) {
     //$testUrl = $_POST['URBIT_API_TEST_URL'];
     $lastChar = Tools::substr(Tools::getValue('URBIT_API_TEST_URL'), -1);
 
@@ -245,20 +253,26 @@ if ($test_api_call) {
         echo Tools::jsonEncode($_POST);
         die;
     }
-} else if ($mod && $mod == "get_default_data") {
+} elseif ($mod && $mod == "get_default_data") {
     $form_data = array();
-    $data_carr = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS("SELECT * FROM " . _DB_PREFIX_ . "carrier  WHERE `id_carrier`='" . $data[0]['id_carrier'] . "'");
+    $data_carr = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS("SELECT * FROM " . _DB_PREFIX_ .
+      "carrier  WHERE `id_carrier`='" . $data[0]['id_carrier'] . "'");
 
     if (isset($data_carr['max_width'])) {
-            DB::getInstance()->Execute("UPDATE `"._DB_PREFIX_ . "carrier` SET `max_width` = '142', `max_height` = '142', `max_depth` = '142', `max_weight` = '10' WHERE `"._DB_PREFIX_ . "carrier`.`id_carrier`='" . $data[0]['id_carrier'] . "'");
+            DB::getInstance()->Execute("UPDATE `"._DB_PREFIX_ .
+              "carrier` SET `max_width` = '142', `max_height` = '142', `max_depth` = '142', `max_weight` = '10' WHERE `"
+              ._DB_PREFIX_ . "carrier`.`id_carrier`='" . $data[0]['id_carrier'] . "'");
     }
 
-    $data_zone = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS("SELECT * FROM " . _DB_PREFIX_ . "carrier_zone  WHERE `id_carrier`='" . $data[0]['id_carrier'] . "'");
+    $data_zone = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS("SELECT * FROM " . _DB_PREFIX_ .
+      "carrier_zone  WHERE `id_carrier`='" . $data[0]['id_carrier'] . "'");
 
     if (sizeof($data_zone) > 1) {
-        DB::getInstance()->Execute("DELETE FROM `" . _DB_PREFIX_ . "carrier_zone` WHERE `" . _DB_PREFIX_ . "carrier_zone`.`id_carrier` = '" . $data[0]['id_carrier'] . "'");
+        DB::getInstance()->Execute("DELETE FROM `" . _DB_PREFIX_ .
+          "carrier_zone` WHERE `" . _DB_PREFIX_ . "carrier_zone`.`id_carrier` = '" . $data[0]['id_carrier'] . "'");
 
-        DB::getInstance()->Execute("INSERT INTO `" . _DB_PREFIX_ . "carrier_zone` (`id_carrier`, `id_zone`) VALUES ('" . $data[0]['id_carrier'] . "', '1')");
+        DB::getInstance()->Execute("INSERT INTO `" . _DB_PREFIX_ .
+          "carrier_zone` (`id_carrier`, `id_zone`) VALUES ('" . $data[0]['id_carrier'] . "', '1')");
     }
 
     $form_data['URBIT_API_CUSTOMER_KEY'] = Configuration::get('URBIT_API_CUSTOMER_KEY');
@@ -279,7 +293,9 @@ if ($test_api_call) {
     $form_data['URBIT_ADMIN_FLAT_FEE_SEK'] = Configuration::get('URBIT_ADMIN_FLAT_FEE_SEK');
     $form_data['URBIT_ADMIN_FLAT_FEE_GBP'] = Configuration::get('URBIT_ADMIN_FLAT_FEE_GBP');
 
-    $form_data['URBIT_ADMIN_STATUS_TRIGGER_OPTIONS'] = OrderState::getOrderStates((int)Context::getContext()->language->id);
+    $form_data['URBIT_ADMIN_STATUS_TRIGGER_OPTIONS'] = OrderState::getOrderStates(
+        (int)Context::getContext()->language->id
+    );
 
     echo Tools::jsonEncode($form_data);
 }
@@ -292,15 +308,17 @@ if ($test_api_call) {
  */
 function updateUrbitDeliveryPrice($priceFromConfig, $defaultPrice)
 {
-  $price = $priceFromConfig ? : $defaultPrice;
+    $price = $priceFromConfig ? : $defaultPrice;
 
-  $urbit_carrier = Db::getInstance()->executeS('SELECT `id_carrier` FROM `' . _DB_PREFIX_ . 'carrier` WHERE `external_module_name` = "urbit" ORDER BY `id_carrier` DESC LIMIT 1');
+    $urbit_carrier = Db::getInstance()->executeS('SELECT `id_carrier` FROM `' . _DB_PREFIX_ .
+      'carrier` WHERE `external_module_name` = "urbit" ORDER BY `id_carrier` DESC LIMIT 1');
 
-  if (isset($urbit_carrier[0]['id_carrier'])) {
-      $sql = 'UPDATE `'._DB_PREFIX_.'delivery` SET price=' . $price . ' WHERE id_carrier=' . $urbit_carrier[0]['id_carrier'];
+    if (isset($urbit_carrier[0]['id_carrier'])) {
+        $sql = 'UPDATE `'._DB_PREFIX_.
+          'delivery` SET price=' . $price . ' WHERE id_carrier=' . $urbit_carrier[0]['id_carrier'];
 
-      if (!Db::getInstance()->execute($sql)) {
-          return false;
-      }
-  }
+        if (!Db::getInstance()->execute($sql)) {
+            return false;
+        }
+    }
 }

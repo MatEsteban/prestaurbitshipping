@@ -90,8 +90,6 @@ class UrbitInstallerTabs extends UrbitInstallerEntity
                 return $tab->delete();
             }
         }
-
         return true;
     }
-
 }

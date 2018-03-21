@@ -119,38 +119,63 @@ class UrbitCart
             $id_urbit_order_cart = $val['id_urbit_order_cart'];
         }
 
-        $checkout_id = isset($order_values['delivery_options']['checkout_id']) ? $order_values['delivery_options']['checkout_id'] : $order_values['checkout_id'];
+        $checkout_id = isset($order_values['delivery_options']['checkout_id']) ?
+          $order_values['delivery_options']['checkout_id'] : $order_values['checkout_id'];
         $isSend = "false";
         $responseCode = "0";
         $preparationEndTime = "0";
 
         if (empty($id_urbit_order_cart)) {
             $ret = Db::getInstance()->execute(
-                'INSERT INTO ' . _DB_PREFIX_ . 'urbit_order_cart (`id_cart`, `id_order`, `id_carrier`, `id_customer`, `id_address_delivery`, `id_address_invoice`, `flag_order_created`, `delivery_first_name`, `delivery_last_name`, `checkout_id`, `is_send`,`response_code`, `delivery_street`, `delivery_time`, `preparation_end_time`, `delivery_zip_code`, `delivery_city`, `delivery_contact_mail`, `delivery_contact_phone`, `delivery_advise_message`, `delivery_is_gift`, `delivery_gift_receiver_phone`, `date_add`, `date_upd`,`delivery_type`)  VALUES (' . $order_values['id_cart']
-                . ',' . $order_values['id_order']
-                . ',' . $order_values['id_carrier']
-                . ',' . $order_values['id_customer']
-                . ',' . $order_values['id_address_delivery']
-                . ',' . $order_values['id_address_invoice']
-                . ',' . $order_values['flag_order_created']
-                . ',"' . $order_values['delivery_options']['del_first_name']
-                . '","' . $order_values['delivery_options']['del_last_name']
-                . '","' . $checkout_id
-                . '","' . $isSend
-                . '","' . $responseCode
-                . '","' . $order_values['delivery_options']['del_street']
-                . '","' . $order_values['delivery_options']['del_time']
-                . '","' . $order_values['preparation_end_time']
-                . '","' . $order_values['delivery_options']['del_zip_code']
-                . '","' . $order_values['delivery_options']['del_city']
-                . '","' . $order_values['delivery_options']['del_contact_mail']
-                . '","' . $order_values['delivery_options']['del_contact_phone']
-                . '","' . $order_values['delivery_options']['del_advise_message']
-                . '","' . $order_values['delivery_options']['del_is_gift']
-                . '","' . $order_values['delivery_options']['del_gift_receiver_phone']
-                . '","' . $order_values['date_add']
-                . '","' . $order_values['date_upd']
-                . '","' . $order_values['delivery_options']['del_type'] . '")'
+                'INSERT INTO ' .
+                  _DB_PREFIX_ .
+                  'urbit_order_cart (`id_cart`,
+                  `id_order`,
+                  `id_carrier`,
+                  `id_customer`,
+                   `id_address_delivery`,
+                    `id_address_invoice`,
+                    `flag_order_created`,
+                    `delivery_first_name`,
+                    `delivery_last_name`,
+                    `checkout_id`,
+                    `is_send`,
+                    `response_code`,
+                    `delivery_street`,
+                    `delivery_time`,
+                    `preparation_end_time`,
+                     `delivery_zip_code`,
+                     `delivery_city`,
+                     `delivery_contact_mail`,
+                      `delivery_contact_phone`,
+                      `delivery_advise_message`,
+                      `delivery_is_gift`,
+                      `delivery_gift_receiver_phone`,
+                      `date_add`, `date_upd`,`delivery_type`)  VALUES (' . $order_values['id_cart']
+                  . ',' . $order_values['id_order']
+                  . ',' . $order_values['id_carrier']
+                  . ',' . $order_values['id_customer']
+                  . ',' . $order_values['id_address_delivery']
+                  . ',' . $order_values['id_address_invoice']
+                  . ',' . $order_values['flag_order_created']
+                  . ',"' . $order_values['delivery_options']['del_first_name']
+                  . '","' . $order_values['delivery_options']['del_last_name']
+                  . '","' . $checkout_id
+                  . '","' . $isSend
+                  . '","' . $responseCode
+                  . '","' . $order_values['delivery_options']['del_street']
+                  . '","' . $order_values['delivery_options']['del_time']
+                  . '","' . $order_values['preparation_end_time']
+                  . '","' . $order_values['delivery_options']['del_zip_code']
+                  . '","' . $order_values['delivery_options']['del_city']
+                  . '","' . $order_values['delivery_options']['del_contact_mail']
+                  . '","' . $order_values['delivery_options']['del_contact_phone']
+                  . '","' . $order_values['delivery_options']['del_advise_message']
+                  . '","' . $order_values['delivery_options']['del_is_gift']
+                  . '","' . $order_values['delivery_options']['del_gift_receiver_phone']
+                  . '","' . $order_values['date_add']
+                  . '","' . $order_values['date_upd']
+                  . '","' . $order_values['delivery_options']['del_type'] . '")'
             );
         } else {
             $ret = Db::getInstance()->execute(
@@ -270,8 +295,8 @@ class UrbitCart
                     cnt.iso_code,
                     cnt.call_prefix,
                     cntlng.name as country_name
-                    
-                    FROM ' . _DB_PREFIX_ . 'urbit_order_cart AS uoc 
+
+                    FROM ' . _DB_PREFIX_ . 'urbit_order_cart AS uoc
                     INNER JOIN ' . _DB_PREFIX_ . 'cart AS uc ON uoc.id_cart = uc.id_cart
                     INNER JOIN ' . _DB_PREFIX_ . 'carrier AS car ON uoc.id_carrier = car.id_carrier
                     INNER JOIN ' . _DB_PREFIX_ . 'customer AS cus ON uoc.id_customer = cus.id_customer
@@ -285,24 +310,35 @@ class UrbitCart
 
     public static function getUnsentCarts()
     {
-        return Db::getInstance()->executeS('SELECT * FROM `' . _DB_PREFIX_ . 'urbit_order_cart` WHERE `is_send`="false"');
+        return Db::getInstance()->executeS(
+            'SELECT * FROM `' .
+             _DB_PREFIX_ .
+             'urbit_order_cart` WHERE `is_send`="false"'
+        );
     }
 
     public static function getUrbitCart($urbitCartId)
     {
-        return Db::getInstance()->executeS('SELECT * FROM `' . _DB_PREFIX_ . 'urbit_order_cart` WHERE `id_urbit_order_cart`="' . $urbitCartId .'"');
+        return Db::getInstance()->executeS('SELECT * FROM `' .
+           _DB_PREFIX_
+           .'urbit_order_cart` WHERE `id_urbit_order_cart`="' .
+           $urbitCartId .
+           '"');
     }
 
     public static function getUrbitCartByOrderId($orderId)
     {
-        return Db::getInstance()->executeS('SELECT * FROM `' . _DB_PREFIX_ . 'urbit_order_cart` WHERE `id_order`=' . $orderId);
+        return Db::getInstance()->executeS('SELECT * FROM `' .
+            _DB_PREFIX_ .
+            'urbit_order_cart` WHERE `id_order`=' .
+             $orderId);
     }
 
     public function getOrderProducts($id_cart)
     {
         $context = Context::getContext();
         $lang_id = $context->language->id;
-        $order_products = Db::getInstance()->executeS('SELECT 
+        $order_products = Db::getInstance()->executeS('SELECT
              cp.id_product, cp.quantity, p.price, p.reference, pl.name, pl.description_short
                     FROM ' . _DB_PREFIX_ . 'cart_product AS cp
                     INNER JOIN ' . _DB_PREFIX_ . 'product  AS p ON cp.id_product = p.id_product

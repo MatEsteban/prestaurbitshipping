@@ -53,7 +53,8 @@ class UbitAPIWrapper
     /**
      * Creates a new Order.
      *
-     * @param order object with required sub objects such as articles, consumer, store location. Make sure that you check               the validity of the postal code before creating an order.
+     * @param order object with required sub objects such as articles, consumer, store location.
+     * @param Make sure that you check  the validity of the postal code before creating an order.
      * @return UrbitShippingResponse response object with error status, data and error message attributs.
      */
     public function createOrder($args)
@@ -164,9 +165,10 @@ class UbitAPIWrapper
 
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $this->method);
 
-        if ($this->method != 'GET' ) {
+        if ($this->method != 'GET') {
             curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
         }
+
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->conf["connecttimeout"]);

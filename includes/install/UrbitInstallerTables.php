@@ -144,7 +144,8 @@ class UrbitInstallerTables extends UrbitInstallerEntity
         $queries = array();
 
         foreach ($this->tables as $tableName => $tableDescription) {
-            $queries[] = "CREATE TABLE IF NOT EXISTS `{$PREFIX}{$tableName}` ({$tableDescription}) ENGINE={$ENGINE} DEFAULT CHARSET=utf8;";
+            $queries[] = "CREATE TABLE IF NOT EXISTS `{$PREFIX}{$tableName}`
+            ({$tableDescription}) ENGINE={$ENGINE} DEFAULT CHARSET=utf8;";
         }
 
         $queries[] = "REPLACE INTO `{$PREFIX}urbit_rate_service_code`

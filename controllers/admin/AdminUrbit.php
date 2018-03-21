@@ -14,6 +14,7 @@ class AdminUrbitController extends AdminUrbitAbstract
     public function __construct()
     {
         parent::__construct();
+
         $this->configuration_keys['URBIT_SHOW_DELAY'] = 'isInt';
         $this->configuration_keys['URBIT_SHOW_PARTLY_COST'] = 'isInt';
         $this->configuration_keys['URBIT_DEFAULT_PRODUCT_LENGTH'] = 'isInt';
@@ -24,4 +25,5 @@ class AdminUrbitController extends AdminUrbitAbstract
         $this->configuration_keys['URBIT_PACKAGE_MARGIN'] = 'isInt';
         $this->configuration_keys['URBIT_PLACE_EXTRA_COVER_FORM'] = 'isString';
     }
+
 }

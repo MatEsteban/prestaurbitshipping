@@ -74,6 +74,9 @@ class AdminUrbitAbstract extends ModuleAdminController
         'URBIT_FHEIGHT' => 'isInt',
         'URBIT_FWIDTH' => 'isInt'
     );
+    // product carrier filter
+    protected $_category;
+    protected $id_current_category;
 
     /**
      * Set Media file include when controller called
@@ -291,7 +294,7 @@ class AdminUrbitAbstract extends ModuleAdminController
         // get list delivery service
         $delivery_service = $rate_config_obj->getAllService();
         // get a list option of categories
-        $categories_select = $this->_getChildCategories(Category::getCategories($this->context->language->id), 0);
+        $categories_select = $this->getChildCategories(Category::getCategories($this->context->language->id), 0);
         // get list  change
         //list all categories
         $list_category = $rate_config_obj->getListCategory();
@@ -315,7 +318,7 @@ class AdminUrbitAbstract extends ModuleAdminController
      * 'home->mac'
      * )
      * */
-    private function _getChildCategories(array $categories, $id_cate)
+    private function getChildCategories(array $categories, $id_cate)
     {
         if (isset($categories[$id_cate])) {
             foreach ($categories[$id_cate] as $id_category => $category) {
@@ -337,7 +340,7 @@ class AdminUrbitAbstract extends ModuleAdminController
                     $this->option_list[$id_category]['name'] = implode('>', $category);
                     unset($category);
                 }
-                $this->_getChildCategories($categories, $id_category);
+                $this->getChildCategories($categories, $id_category);
             }
         }
 
@@ -406,8 +409,8 @@ class AdminUrbitAbstract extends ModuleAdminController
         $list_category = $rate_config_obj->getListCategory();
         // get list delivery service
         $delivery_service = $rate_config_obj->getAllService();
-        // call to _getChildCategories to get a list option of categories
-        $categories_select = $this->_getChildCategories(Category::getCategories($this->context->language->id), 0);
+        // call to getChildCategories to get a list option of categories
+        $categories_select = $this->getChildCategories(Category::getCategories($this->context->language->id), 0);
         // get array rate config
         $detail_rate_config = $rate_config_obj->getDetailCategory();
         //get Add To OR Replace
@@ -608,4 +611,6 @@ class AdminUrbitAbstract extends ModuleAdminController
         echo $this->json_data;
         exit();
     }
+    // product carrier filter
+    
 }
