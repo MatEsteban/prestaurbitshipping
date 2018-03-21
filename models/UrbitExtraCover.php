@@ -152,8 +152,7 @@ class UrbitExtraCover
     public static function isExtraCoverService(array $urbit_service_code)
     {
         if (Tools::strtolower(Tools::substr($urbit_service_code[0], 0, 4)) == 'intl') {
-            $is_extra_cover = !empty($urbit_service_code[1]) &&
-              $urbit_service_code[1] == self::$option_code_international;
+            $is_extra_cover = !empty($urbit_service_code[1]) && $urbit_service_code[1] == self::$option_code_international;
         } else {
             $is_extra_cover = !empty($urbit_service_code[2]) && $urbit_service_code[2] == self::$option_code;
         }

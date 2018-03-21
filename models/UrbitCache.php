@@ -27,11 +27,7 @@ class UrbitCache extends ObjectModel
                 'required' => false,
                 'size' => 255
             ),
-            'hash'                  => array('type' => self::TYPE_STRING,
-              'validate' => 'isString',
-              'required' => true,
-              'size' => 32
-            ),
+            'hash'                  => array('type' => self::TYPE_STRING, 'validate' => 'isString', 'required' => true, 'size' => 32),
             'total_charges'         => array(
                 'type' => self::TYPE_FLOAT,
                 'validate' => 'isFloat',
@@ -101,8 +97,7 @@ class UrbitCache extends ObjectModel
         if (empty($hash)) {
             return false;
         }
-        self::$cache[$hash]['total_charges'] = ($total_charges == null || $total_charges == false) ?
-          -1 : $total_charges;
+        self::$cache[$hash]['total_charges'] = ($total_charges == null || $total_charges == false) ? -1 : $total_charges;
         self::$cache[$hash]['delay'] = $delay;
         self::$cache[$hash]['partly_cost'] = Tools::jsonEncode($partly_cost);
         $cache = new UrbitCache();
@@ -164,8 +159,7 @@ class UrbitCache extends ObjectModel
      */
     public static function getCacheByHash($hash)
     {
-        $sql = 'SELECT total_charges, delay, partly_cost FROM `' . _DB_PREFIX_ .
-          self::$definition['table'] . '` WHERE hash = "' . $hash . '"';
+        $sql = 'SELECT total_charges, delay, partly_cost FROM `' . _DB_PREFIX_ . self::$definition['table'] . '` WHERE hash = "' . $hash . '"';
         return Db::getInstance()->getRow($sql);
     }
 
@@ -200,8 +194,7 @@ class UrbitCache extends ObjectModel
         $params[] = $cart->id;
         $params[] = $initial_shipping_cost;
         foreach ($cart->getProducts() as $product) {
-            $params[] = $product['id_product'] . ':'
-              . $product['id_product_attribute'] . ':' . $product['cart_quantity'];
+            $params[] = $product['id_product'] . ':' . $product['id_product_attribute'] . ':' . $product['cart_quantity'];
         }
 
         // by carrier

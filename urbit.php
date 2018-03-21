@@ -26,7 +26,7 @@ class Urbit extends UrbitAbstract
     public function __construct()
     {
         $this->name = 'urbit';
-        $this->version = '1.1.4';
+        $this->version = '1.1.5';
 
         $this->author = 'urb-it';
         $this->tab = 'shipping_logistics';
@@ -93,18 +93,14 @@ class Urbit extends UrbitAbstract
         $this->context->smarty->assign(array(
             'urbit_delays' => Tools::jsonEncode($this->getDelays()),
             'urbit_show_delay' => Configuration::get('URBIT_SHOW_DELAY') ? Configuration::get('URBIT_SHOW_DELAY') : 0,
-            'urbit_extra_form' => Configuration::get('URBIT_PLACE_EXTRA_COVER_FORM') ?
-              Configuration::get('URBIT_PLACE_EXTRA_COVER_FORM') : 0,
+            'urbit_extra_form' => Configuration::get('URBIT_PLACE_EXTRA_COVER_FORM') ? Configuration::get('URBIT_PLACE_EXTRA_COVER_FORM') : 0,
             'urbit_partly_costs' => Tools::jsonEncode($this->processOutputCosts($this->partly_costs)),
             'urbit_show_partly_cost' => Configuration::get('URBIT_SHOW_PARTLY_COST'),
-            'urbit_place_extra_cover_form' => Configuration::get('URBIT_PLACE_EXTRA_COVER_FORM', false) ?
-              Configuration::get('URBIT_PLACE_EXTRA_COVER_FORM') : 'popup_center',
+            'urbit_place_extra_cover_form' => Configuration::get('URBIT_PLACE_EXTRA_COVER_FORM', false) ? Configuration::get('URBIT_PLACE_EXTRA_COVER_FORM') : 'popup_center',
             'this_path' => $this->_path,
             'total_product_gst' => (int) $this->context->cart->getOrderTotal(true, Cart::BOTH_WITHOUT_SHIPPING),
-            'extra_cover_carriers' => isset($this->extra_cover) ?
-              Tools::jsonEncode(array_values($this->extra_cover)) : Tools::jsonEncode(array()),
-            'id_carrier_selected' => isset($this->context->cookie->aus_id_carrier) ?
-              $this->context->cookie->aus_id_carrier : '',
+            'extra_cover_carriers' => isset($this->extra_cover) ? Tools::jsonEncode(array_values($this->extra_cover)) : Tools::jsonEncode(array()),
+            'id_carrier_selected' => isset($this->context->cookie->aus_id_carrier) ? $this->context->cookie->aus_id_carrier : '',
             'ajax_extra_cover_url' => $this->context->link->getModuleLink($this->name, 'ShippingCost', array(), true),
             'ajax_extra_cover_action' => 'ExtraCoverForm'
         ));

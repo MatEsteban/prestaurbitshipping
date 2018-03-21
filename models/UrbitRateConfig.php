@@ -166,11 +166,7 @@ class UrbitRateConfig extends ObjectModel
             SELECT c.id_category, cl.name, cl.link_rewrite
             FROM ' . _DB_PREFIX_ . 'category c
             LEFT JOIN ' . _DB_PREFIX_ . 'category_lang cl ON (cl.id_category = c.id_category)
-            WHERE c.nleft <= ' . (int)$category['nleft'] .
-              ' AND c.nright >= ' .
-              (int)$category['nright'] .
-              ' AND cl.id_lang = ' .
-               (int)Context::getContext()->language->id . '
+            WHERE c.nleft <= ' . (int)$category['nleft'] . ' AND c.nright >= ' . (int)$category['nright'] . ' AND cl.id_lang = ' . (int)Context::getContext()->language->id . '
             ORDER BY c.level_depth ASC
             LIMIT ' . (int)($category['level_depth'] + 1));
             $path_tab = array();
@@ -253,8 +249,7 @@ class UrbitRateConfig extends ObjectModel
             $this->id_category = (int)$id_category;
         } else {
             // delete old service
-            $sql = 'DELETE FROM `' . _DB_PREFIX_ .
-              'urbit_rate_config_service` WHERE id_urbit_rate_config = ' . (int)$this->id;
+            $sql = 'DELETE FROM `' . _DB_PREFIX_ . 'urbit_rate_config_service` WHERE id_urbit_rate_config = ' . (int)$this->id;
             if (!Db::getInstance()->query($sql)) {
                 return false;
             }
@@ -308,13 +303,9 @@ class UrbitRateConfig extends ObjectModel
     public function getDetailIdRateServiceCode()
     {
         $services = Db::getInstance()->getValue('
-                SELECT GROUP_CONCAT(ursc.`id_urbit_rate_service_code` ORDER BY ursc.
-                `id_urbit_rate_service_code`)
-                FROM `' . _DB_PREFIX_ .
-                'urbit_rate_config_service` urcs
-                LEFT JOIN `' . _DB_PREFIX_ .
-                'urbit_rate_service_code` ursc
-                ON (ursc.`id_urbit_rate_service_code` = urcs.`id_urbit_rate_service_code`)
+                SELECT GROUP_CONCAT(ursc.`id_urbit_rate_service_code` ORDER BY ursc.`id_urbit_rate_service_code`)
+                FROM `' . _DB_PREFIX_ . 'urbit_rate_config_service` urcs
+                LEFT JOIN `' . _DB_PREFIX_ . 'urbit_rate_service_code` ursc ON (ursc.`id_urbit_rate_service_code` = urcs.`id_urbit_rate_service_code`)
                 WHERE urcs.`id_urbit_rate_config` = ' . (int)$this->id);
 
         return explode(',', $services);
@@ -330,8 +321,7 @@ class UrbitRateConfig extends ObjectModel
     {
         $result = parent::delete();
         if ($result) {
-            $result = Db::getInstance()->Execute('DELETE FROM `' . _DB_PREFIX_ .
-              'urbit_rate_config_service` WHERE `id_urbit_rate_config` = ' . (int)$this->id);
+            $result = Db::getInstance()->Execute('DELETE FROM `' . _DB_PREFIX_ . 'urbit_rate_config_service` WHERE `id_urbit_rate_config` = ' . (int)$this->id);
         }
 
         return $result;
@@ -508,8 +498,7 @@ class UrbitRateConfig extends ObjectModel
             $this->id_product = (int)$id_product;
         } else {
             // delete old service
-            $sql = 'DELETE FROM `' . _DB_PREFIX_ .
-              'urbit_rate_config_service` WHERE id_urbit_rate_config = ' . (int)$this->id;
+            $sql = 'DELETE FROM `' . _DB_PREFIX_ . 'urbit_rate_config_service` WHERE id_urbit_rate_config = ' . (int)$this->id;
             if (!Db::getInstance()->query($sql)) {
                 return false;
             }
@@ -519,8 +508,7 @@ class UrbitRateConfig extends ObjectModel
         // remove existing records {id_product/id_config_config_rate_service_code}
         $sql = 'SELECT GROUP_CONCAT(id_urbit_rate_service_code)
                 FROM `' . _DB_PREFIX_ . 'urbit_rate_config` as arc
-                JOIN `' . _DB_PREFIX_ . 'urbit_rate_config_service` as rcs
-                ON arc.id_urbit_rate_config = rcs.id_urbit_rate_config
+                JOIN `' . _DB_PREFIX_ . 'urbit_rate_config_service` as rcs ON arc.id_urbit_rate_config = rcs.id_urbit_rate_config
                 WHERE id_product = ' . (int)$id_product . '
                     AND id_urbit_rate_service_code IN (' . implode(',', $new_services) . ')';
 

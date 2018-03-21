@@ -33,7 +33,6 @@ class UrbitShippingOptionsModuleFrontController extends FrontController
                 break;
             case $this->isNotEmpty('nearest_possible'):
                 $this->nearestPossibleNowTime();
-            //Next time possible is calculating according to opening hours
             default:
                 $ret = Tools::jsonEncode(array(
                     "status" => false,
@@ -99,8 +98,7 @@ class UrbitShippingOptionsModuleFrontController extends FrontController
         $ret_possible_delivery_hours = UrbitStoreApi::getDeliveryHours();
 
 
-        $delivery_hours_items = $ret_possible_delivery_hours->hasError() ?
-          array() : $ret_possible_delivery_hours->args->items;
+        $delivery_hours_items = $ret_possible_delivery_hours->hasError() ? array() : $ret_possible_delivery_hours->args->items;
 
         $isPossibleHours = false;
 
@@ -109,17 +107,10 @@ class UrbitShippingOptionsModuleFrontController extends FrontController
                 continue;
             }
 
-            $firstDeliveryTimestamp = strtotime(
-                '+5 minutes',
-                $this->getDeliveryDateTimestamp($delivery_item->first_delivery)
-            );
-            $lastDeliveryTimestamp = strtotime(
-                '-5 minutes',
-                $this->getDeliveryDateTimestamp($delivery_item->last_delivery)
-            );
+            $firstDeliveryTimestamp = strtotime('+5 minutes', $this->getDeliveryDateTimestamp($delivery_item->first_delivery));
+            $lastDeliveryTimestamp = strtotime('-5 minutes', $this->getDeliveryDateTimestamp($delivery_item->last_delivery));
 
-            if ($chosenDeliveryDateTimestamp >= $firstDeliveryTimestamp &&
-                $lastDeliveryTimestamp >= $chosenDeliveryDateTimestamp) {
+            if ($chosenDeliveryDateTimestamp >= $firstDeliveryTimestamp && $lastDeliveryTimestamp >= $chosenDeliveryDateTimestamp) {
                 $isPossibleHours = true;
             }
         }
@@ -127,9 +118,7 @@ class UrbitShippingOptionsModuleFrontController extends FrontController
         $validate_delivery['possible_hours'] = $isPossibleHours;
 
         if (!empty($validate_delivery['error_code'])) {
-            $validate_delivery['error_message'] = UrbitConfigurations::getErrorMessage(
-                $validate_delivery['error_code']
-            );
+            $validate_delivery['error_message'] = UrbitConfigurations::getErrorMessage($validate_delivery['error_code']);
         }
 
         $ret = Tools::jsonEncode($validate_delivery);
@@ -229,8 +218,7 @@ class UrbitShippingOptionsModuleFrontController extends FrontController
         $start_date = Tools::getValue('selectDate');
 
         $ret_possible_delivery_hours = UrbitStoreApi::getDeliveryHours();
-        $delivery_hours_items = $ret_possible_delivery_hours->hasError() ?
-          array() : $ret_possible_delivery_hours->args->items;
+        $delivery_hours_items = $ret_possible_delivery_hours->hasError() ? array() : $ret_possible_delivery_hours->args->items;
 
         $DATETIME = 'Y-m-d\TH:i:sP';
         $utcTimeZone = new DateTimeZone('UTC');
@@ -358,22 +346,13 @@ class UrbitShippingOptionsModuleFrontController extends FrontController
         $nearestPossibleTimeObj = new DateTime($nearestPossibleTimeString, $cetTimeZone);
 
         $back_office_day_count = Configuration::get('URBIT_MODULE_TIME_SPECIFIED');
-        $end_date = $back_office_day_count ?
-        date(
-            'Y-m-d',
-            strtotime('+' . $back_office_day_count . ' day', $nowTime->getTimestamp())
-        ) :
-        date(
-            'Y-m-d',
-            strtotime('+4 days', $nowTime->getTimestamp())
-        );
+        $end_date = $back_office_day_count ? date('Y-m-d', strtotime('+' . $back_office_day_count . ' day', $nowTime->getTimestamp())) : date('Y-m-d', strtotime('+4 days', $nowTime->getTimestamp()));
 
         $endDateTimeStamp =  strtotime($end_date);
         $DATETIME = 'Y-m-d\TH:i:sP';
 
         $ret_possible_delivery_hours = UrbitStoreApi::getDeliveryHours();
-        $delivery_hours_items = $ret_possible_delivery_hours->hasError()?
-          array() : $ret_possible_delivery_hours->args->items;
+        $delivery_hours_items = $ret_possible_delivery_hours->hasError()? array() : $ret_possible_delivery_hours->args->items;
 
         $days = array();
         $from_dates = array();

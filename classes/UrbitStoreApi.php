@@ -235,8 +235,10 @@ class UrbitStoreApi
                 null,
                 $mailDir
             );
+
             $return = '<p class="alert alert-warning">' . $returnObj->error_message . '</p>';
-        } else {
+
+        } else{
             $return = '<p class="alert alert-success">Urbit Order Successfully Created !</p>';
         }
 

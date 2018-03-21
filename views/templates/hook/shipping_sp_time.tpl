@@ -3,7 +3,7 @@
 *
 * @author    Urb-it
 * @copyright Urb-it
-* @license
+* @license 
 *}
 
 <script type="text/javascript">
@@ -724,10 +724,11 @@
     <div id="hp_urbit_ship_title" class="text-center">
         <img src="{$carrier_img_id|escape:'htmlall':'UTF-8'}"  class=" img-responsive center-block" />
     </div>
+
     <div class="row">
         <div class="col-sm-6 col-md-6 hp_urbit_ship_where_do_go">
             <h4 class="hp_urbit_ship_h4 hp_ub_now">{l s='When would you like your purchase?' mod='urbit'}</h4>
-            <p  class="hp_urbit_validation_error" id="del_time_error"></p>
+            <p class="hp_urbit_validation_error" id="del_time_error"></p>
             <p class="hp_urbit_ship_p" id="urb_options_now">{l s='Now' mod='urbit'} <i class="icon-check"></i></p>
             <p id="sp_time" class="hp_urbit_ship_p">{l s='Specific time (CET)' mod='urbit'} <i class=""></i></p>
             <div class="row hp_urbit_sp_time">
@@ -740,13 +741,13 @@
                 <div class="col-xs-3">
                     <select class="fixed-width-xl" id="sp_time_hour" disabled>
                         <option value="">HH</option>
-                    </select>
+                    </select> 
                 </div>
                 <div class="col-xs-3">
                     <select class=" fixed-width-xl" id="sp_time_minute" disabled>
                         <option value="">MM</option>
                     </select>
-                </div>
+                </div>     
             </div>
             <div class="hp_urbit_ship_send">
                 <h4 class="hp_urbit_ship_h4">{l s='Where would you like to recieve your purchase?' mod='urbit'}</h4>
@@ -792,7 +793,7 @@
                     <input type="text" class="form-control urbit_del_validate" id="hp_urbit_del_phone"
                            placeholder="{l s='Recipient\'s mobile number' mod='urbit'}">
                 </div>
-            </div>
+            </div> 
         </div>
         <div class="col-sm-6 col-md-6 hp_urbit_ship_contact">
             <h4 class="hp_urbit_ship_h4 mobile_title">{l s='How can we best get in touch with you?' mod='urbit'}</h4>
@@ -851,7 +852,7 @@
     .gray-out{
         opacity: 0.4;
         filter: alpha(opacity=40);
-        cursor: default;
+        cursor: default; 
         pointer-events: none;
     }
     .dissapear{
@@ -877,7 +878,7 @@
         color:#5EC7D1;
         float:right;
     }
-
+    
     .hp_urbit_ship_p#sp_time{
         margin-bottom: 0px !important;
     }
@@ -959,8 +960,8 @@
         padding: 10px;
         margin-bottom: 10px;
         border-radius: 5px;
-        -webkit-animation: borderBlink 1s linear 5;
-        animation: borderBlink 1s linear 5;
+        -webkit-animation: borderBlink 1s linear 5;    
+        animation: borderBlink 1s linear 5;    
     }
 
     #hp_urbit_ship_title p{
@@ -988,24 +989,24 @@
         padding: 10px;
     }
 
-    @-webkit-keyframes borderBlink {
-        from, to {
-            border-color: transparent
-        }
-        50% {
+    @-webkit-keyframes borderBlink {    
+        from, to {    
+            border-color: transparent    
+        }    
+        50% {    
             border-color: #2c2e2f
 
         }
 
-    }
-    @keyframes borderBlink {
-        from, to {
-            border-color: transparent
-        }
-        50% {
+    }    
+    @keyframes borderBlink {    
+        from, to {    
+            border-color: transparent    
+        }    
+        50% {    
             border-color: #2c2e2f
-        }
-    }
+        }    
+    }    
 
     label.hp_urbit_ship_blue_p{
         display: inline-block;
@@ -1029,14 +1030,5 @@
     }
     .hp_urbit_ship_send .form-group {
         margin-bottom: 5px;
-    }
-
-    #urb_options_now, #sp_time, #hp_urbit_del_first_name,
-     #hp_urbit_del_last_name, #hp_urbit_del_postcode,
-     #hp_urbit_del_citym #hp_urbit_del_city, #hp_urbit_del_city,
-     #contact_mobile_number,#contact_email_address,
-     #hp_urbit_ship_extra_msg, #hp_urbit_del_street,
-      #sp_time_date, #sp_time_hour, #sp_time_minute{
-      background-color: #fff;
     }
 </style>

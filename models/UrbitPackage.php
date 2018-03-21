@@ -70,8 +70,7 @@ class UrbitPackage
             $cart,
             $id_carrier
         );
-        // get boxes of current cart;
-        //cart's products are splited into boxes, following box rule (width, height, length, weight)
+        // get boxes of current cart; cart's products are splited into boxes, following box rule (width, height, length, weight)
         $urbit_package = new UrbitPackage(
             Configuration::get('URBIT_PACKAGE_MARGIN'),
             Configuration::get('URBIT_FLEXIBLE_PACKAGE')
@@ -81,8 +80,7 @@ class UrbitPackage
             Configuration::get('URBIT_FWIDTH'),
             Configuration::get('URBIT_FHEIGHT'),
             Configuration::get('URBIT_FLENGTH'),
-            $aus_package['max']['weight'] / $temp_package_dimensions->getWeightConversionFactor()
-            // fixed value from urbit api
+            $aus_package['max']['weight'] / $temp_package_dimensions->getWeightConversionFactor() // fixed value from urbit api
         );
         $default_dimensions = new UrbitPackageDimensions(
             Configuration::get('URBIT_DEFAULT_PRODUCT_WIDTH'),
@@ -176,18 +174,15 @@ class UrbitPackage
                 }
                 for ($i = 0; $i < $product['cart_quantity']; $i++) {
                     // This is a hidden key
-                    // With this setting, we only count 1 item even customers
-                    //add more than 1 quantity of the same of different item
-                    // To enable: INSERT INTO ps_configuration (`name`, `value`)
-                    //VALUES ('URBIT_COUNT_AS_SINGLE_ITEM', 1);
+                    // With this setting, we only count 1 item even customers add more than 1 quantity of the same of different item
+                    // To enable: INSERT INTO ps_configuration (`name`, `value`) VALUES ('URBIT_COUNT_AS_SINGLE_ITEM', 1);
                     if ((bool)Configuration::get('URBIT_COUNT_AS_SINGLE_ITEM')) {
                         if ($i >= 1) {
                             continue;
                         }
                     }
                     $item_volume = $this->calculateVolume($item_dimensions);
-                    if ($volume + $item_volume <= $box_dimensions->getVolume() &&
-                      ($acc_weight + $item_dimensions->getWeight()) <= $box_dimensions->getWeight()) {
+                    if ($volume + $item_volume <= $box_dimensions->getVolume() && ($acc_weight + $item_dimensions->getWeight()) <= $box_dimensions->getWeight()) {
                         $volume += $item_volume;
                         $acc_weight += $item_dimensions->getWeight();
                         $additional_charges += $item_dimensions->getAdditionalCharge();
@@ -235,19 +230,13 @@ class UrbitPackage
         $length = (float)$product['depth'];
         $weight = (float)$product['weight'];
 
-        $width = !empty($width) && $width > 0.0 ?
-          $width : $default_dimensions->getWidth();
-        $height = !empty($height) && $height > 0.0 ?
-          $height : $default_dimensions->getHeight();
+        $width = !empty($width) && $width > 0.0 ? $width : $default_dimensions->getWidth();
+        $height = !empty($height) && $height > 0.0 ? $height : $default_dimensions->getHeight();
         $length = !empty($length) && $length > 0.0 ? $length : $default_dimensions->getLength();
-        $weight = !empty($weight) && $weight > 0.0 ?
-          $weight : $default_dimensions->getWeight() / $temp_package_dimensions->getWeightConversionFactor();
-        $additional_charges = !empty($product['rule']['additional_charges']) ?
-          $product['rule']['additional_charges'] : 0;
-        // if product is choose Add or nothing choose -> $additional_charge_type=0;
-        //else => $additional_charge_type=1;//replace
-        $additional_charge_type = !empty($product['rule']['type']) ?
-          $product['rule']['type'] : 0;
+        $weight = !empty($weight) && $weight > 0.0 ? $weight : $default_dimensions->getWeight() / $temp_package_dimensions->getWeightConversionFactor();
+        $additional_charges = !empty($product['rule']['additional_charges']) ? $product['rule']['additional_charges'] : 0;
+        // if product is choose Add or nothing choose -> $additional_charge_type=0; else => $additional_charge_type=1;//replace
+        $additional_charge_type = !empty($product['rule']['type']) ? $product['rule']['type'] : 0;
 
         return new UrbitPackageDimensions(
             $width,

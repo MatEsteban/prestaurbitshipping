@@ -44,15 +44,14 @@ class UrbitCarrier extends Carrier
                         $id_zone
                     )
                         )
-                        ) ||
-                          ($shipping_method == Carrier::SHIPPING_METHOD_PRICE && (!Carrier::checkDeliveryPriceByPrice(
-                              $row['id_carrier'],
-                              $cart->getOrderTotal(
-                                  true,
-                                  Cart::BOTH_WITHOUT_SHIPPING
-                              ),
-                              $id_zone
-                          )
+                        ) || ($shipping_method == Carrier::SHIPPING_METHOD_PRICE && (!Carrier::checkDeliveryPriceByPrice(
+                            $row['id_carrier'],
+                            $cart->getOrderTotal(
+                                true,
+                                Cart::BOTH_WITHOUT_SHIPPING
+                            ),
+                            $id_zone
+                        )
                             )
                         )
                     ) {
@@ -71,17 +70,15 @@ class UrbitCarrier extends Carrier
                 $id_zone
             )
             );
-            $row['price_tax_exc'] = (($shipping_method == Carrier::SHIPPING_METHOD_FREE) ?
-              0 : $cart->getPackageShippingCost(
-                  (int)$row['id_carrier'],
-                  false,
-                  null,
-                  null,
-                  $id_zone
-              )
+            $row['price_tax_exc'] = (($shipping_method == Carrier::SHIPPING_METHOD_FREE) ? 0 : $cart->getPackageShippingCost(
+                (int)$row['id_carrier'],
+                false,
+                null,
+                null,
+                $id_zone
+            )
             );
-            $row['img'] = file_exists(_PS_SHIP_IMG_DIR_ . (int)$row['id_carrier']) . '.jpg' ?
-              _THEME_SHIP_DIR_ . (int)$row['id_carrier'] . '.jpg' : '';
+            $row['img'] = file_exists(_PS_SHIP_IMG_DIR_ . (int)$row['id_carrier']) . '.jpg' ? _THEME_SHIP_DIR_ . (int)$row['id_carrier'] . '.jpg' : '';
 
             // If price is false, then the carrier is unavailable (carrier module)
             if ($row['price'] === false) {
@@ -114,10 +111,7 @@ class UrbitCarrier extends Carrier
      */
     public static function getWarehouseByIdCarrier($id_carrier)
     {
-        return (int)Db::getInstance()->getValue('SELECT `id_warehouse` FROM '
-          . _DB_PREFIX_ .
-           'warehouse_carrier WHERE id_carrier = ' .
-           (int)$id_carrier);
+        return (int)Db::getInstance()->getValue('SELECT `id_warehouse` FROM ' . _DB_PREFIX_ . 'warehouse_carrier WHERE id_carrier = ' . (int)$id_carrier);
     }
 
     /**
@@ -129,22 +123,12 @@ class UrbitCarrier extends Carrier
      */
     public function updateWarehouseCarrier($id_warehouse, $id_carrier, $old_id_carrier)
     {
-        return Db::getInstance()->execute('UPDATE `'
-          . _DB_PREFIX_ .
-          'warehouse_carrier` SET `id_carrier` = ' .
-           (int)$id_carrier .
-           ' WHERE `id_warehouse` = ' .
-           $id_warehouse .
-           ' AND `id_carrier` = ' .
-            $old_id_carrier);
+        return Db::getInstance()->execute('UPDATE `' . _DB_PREFIX_ . 'warehouse_carrier` SET `id_carrier` = ' . (int)$id_carrier . ' WHERE `id_warehouse` = ' . $id_warehouse . ' AND `id_carrier` = ' . $old_id_carrier);
     }
 
     public function getActiveCarriers($module_name)
     {
-        return Db::getInstance()->executeS(' SELECT * FROM '
-          . _DB_PREFIX_ . 'carrier c WHERE c.external_module_name = "' .
-           $module_name .
-           '"  AND c.deleted = 0  AND c.active = 1 ');
+        return Db::getInstance()->executeS(' SELECT * FROM ' . _DB_PREFIX_ . 'carrier c WHERE c.external_module_name = "' . $module_name . '"  AND c.deleted = 0  AND c.active = 1 ');
     }
 
     public function getUserAddress($address_id)
@@ -176,7 +160,7 @@ class UrbitCarrier extends Carrier
     private $carrier_code = 'URB_REGULAR';
     public function getUserUrbCarrier()
     {
-        $defalult_urb_carrier = Db::getInstance()->executeS('SELECT `id_carrier`
+        $defalult_urb_carrier = Db::getInstance()->executeS('SELECT `id_carrier` 
             FROM `' . _DB_PREFIX_ . 'urbit_rate_service_code` WHERE `code`="' . $this->carrier_code . '"');
 
         $defalult_urb_carrier_id = "";

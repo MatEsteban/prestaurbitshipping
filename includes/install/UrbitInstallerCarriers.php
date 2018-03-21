@@ -158,33 +158,32 @@ class UrbitInstallerCarriers extends UrbitInstallerEntity
 
         foreach ($zones as $zone) {
             if (!Db::getInstance()->autoExecute(
-                _DB_PREFIX_ . 'carrier_zone',
+              _DB_PREFIX_ . 'carrier_zone',
                 array(
                   'id_carrier' => (int)$carrier->id,
                   'id_zone'    => (int)$zone['id_zone'],
                 ),
-                'INSERT'
-            ) || !Db::getInstance()->autoExecuteWithNullValues(
-                _DB_PREFIX_ . 'delivery',
-                array(
-                      'id_carrier'      => (int)$carrier->id,
-                      'id_range_price'  => (int)$range_price->id,
-                      'id_range_weight' => null,
-                      'id_zone'         => (int)$zone['id_zone'],
-                      'price'           => $price,
-                        ),
-                'INSERT'
-            ) || !Db::getInstance()->autoExecuteWithNullValues(
-                _DB_PREFIX_ . 'delivery',
-                array(
-                                'id_carrier'      => (int)$carrier->id,
-                                'id_range_price'  => null,
-                                'id_range_weight' => (int)$rangeWeight->id,
-                                'id_zone'         => (int)$zone['id_zone'],
-                                'price'           => $price,
+              'INSERT') || !Db::getInstance()->autoExecuteWithNullValues(
+                    _DB_PREFIX_ . 'delivery',
+                    array(
+                        'id_carrier'      => (int)$carrier->id,
+                        'id_range_price'  => (int)$range_price->id,
+                        'id_range_weight' => null,
+                        'id_zone'         => (int)$zone['id_zone'],
+                        'price'           => $price,
                     ),
-                'INSERT'
-            )
+                    'INSERT'
+                ) || !Db::getInstance()->autoExecuteWithNullValues(
+                    _DB_PREFIX_ . 'delivery',
+                    array(
+                        'id_carrier'      => (int)$carrier->id,
+                        'id_range_price'  => null,
+                        'id_range_weight' => (int)$rangeWeight->id,
+                        'id_zone'         => (int)$zone['id_zone'],
+                        'price'           => $price,
+                    ),
+                    'INSERT'
+                )
             ) {
                 return false;
             }
